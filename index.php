@@ -37,7 +37,8 @@ if ($pageName == '') {
   $page = $pageName . '.php';
 } else {
   header('HTTP/1.1 404 Not Found');
-  exit;
+  $page = '404.php';
+  // exit;
 }
 
 ?>
@@ -74,7 +75,8 @@ if ($pageName == '') {
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="#">Home</a>
+          <a class="blog-nav-item <?= ($pageName == 'home') ? 'active' : '' ?>" href="/index.php/home">Home</a>
+          <a class="blog-nav-item <?= ($pageName == 'create') ? 'active' : ''?>" href="/index.php/create">Create</a>
         </nav>
       </div>
     </div>
@@ -82,7 +84,9 @@ if ($pageName == '') {
     <div class="container">
 
       <div class="blog-header">
-        <h1 class="blog-title">WEBD-2006 Blog</h1>
+        <h1 class="blog-title">
+          <a href="/index.php/home" class="no-style">WEBD-2006 Blog</a>
+        </h1>
         <p class="lead blog-description">Blog assignment for the web dev RRC course in BIT.</p>
       </div>
       <?php include "pages/$page" ?>
