@@ -28,6 +28,9 @@ if (isset($url_parts[2])) {
   $pageName = $url_parts[1];
 }
 
+// chop query parameters
+$pageName = explode('?', $pageName)[0];
+
 // the name of the file to load
 $page;
 
@@ -89,7 +92,30 @@ if ($pageName == '') {
         </h1>
         <p class="lead blog-description">Blog assignment for the web dev RRC course in BIT.</p>
       </div>
-      <?php include "pages/$page" ?>
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+          <?php include "pages/$page" ?>
+        </div><!-- /.blog-main -->
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">GitHub</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
     </div><!-- /.container -->
 
     <footer class="blog-footer">
