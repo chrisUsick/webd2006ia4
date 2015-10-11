@@ -2,11 +2,9 @@ RewriteEngine On
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
 
+# if the path isn't a file or directory
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php/$1 [L]
 
-# RewriteCond %{REQUEST_URI} !-d
-# RewriteCond %{REQUEST_URI} !-f
-#
-#RewriteRule . /index.php [L]
+# display the route as if `index.php` was in front of it
+RewriteRule ^(.*)$ index.php/$1 [L]

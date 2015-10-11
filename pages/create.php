@@ -1,4 +1,10 @@
 <?php
+/**
+ * create a post
+ *
+ * this page loads the _form.php partial
+ * also handles the POST for the form
+ */
 require 'lib/authentication.php';
 $title = "";
 $content = "";

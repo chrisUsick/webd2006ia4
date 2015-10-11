@@ -1,28 +1,48 @@
 <?php
+/**
+ * edit a post
+ *
+ * loads a post with the id matching `postId` query param.
+ * Uses the `/pages/_form.php` partial.
+ * handles both GET and POST
+ */
 require 'lib/authentication.php';
 require 'lib/crud.php';
-// variables for form mixin
+// variables for form partial
 $id = null;
 $title = "";
 $content = "";
 $legend = "Edit post";
 $action = "Update";
 $isUpdate = 1;
+
 $idParam = filter_input(INPUT_GET, 'postId', FILTER_SANITIZE_NUMBER_INT);
 $post = null;
+
+// watch out for use of the global keyword in the setTitle mehtod;
+// there is a global $pageTitle variable
+$localPageTitle = "No Post";
+// if there is an ID
 if ($idParam) {
+  // get the post
   $post = find($idParam);
   if ($post != null) {
+    // set the partial variables
     $id = $post['id'];
     $title = $post['title'];
     $content = $post['content'];
-    // implement the set title method
-    function setTitle()
-    {
-      global $post;
-      return "Edit: " . $post['title'];
-    }
+
+    // set page title
+    $localPageTitle = "Edit: " . $post['title'];
+
   }
+}
+
+// implement the set title method
+function setTitle()
+{
+  global $localPageTitle;
+  return $localPageTitle;
 }
 // if is post check input
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -40,6 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <?php require '_form.php' ?>
 <?php else: ?>
   <div class="text-center">
-    <h4 class="text-warning">Post with id: '<?= $_GET['postId'] ?>' not found.</h4>
+    <?php if (isset($_GET['postId'])): ?>
+        <h4 class="text-warning">Post with id: '<?= $_GET['postId'] ?>' not found.</h4>
+      <?php else: ?>
+        <h4 class="text-warning">Invalid URL: please provide a postId query parameter.</h4>
+      <?php endif; ?>
   </div>
 <?php endif; ?>

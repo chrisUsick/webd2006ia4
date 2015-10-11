@@ -62,7 +62,6 @@ ob_end_clean();
 $pageTitle = "";
 if (function_exists('setTitle')){
   $pageTitle = setTitle();
-} else {
 }
 
 ?>
@@ -77,6 +76,7 @@ if (function_exists('setTitle')){
     <meta name="author" content="Christopher Usick">
     <!-- <link rel="icon" href="../../favicon.ico"> -->
     <?php ob_start() ?>
+    <!-- set the title -->
     <title>WEBD-2006 Blog <?= ($pageTitle) ? "- $pageTitle" : "" ?></title>
 
     <!-- Bootstrap core CSS -->
@@ -115,6 +115,7 @@ if (function_exists('setTitle')){
       </div>
       <div class="row">
         <div class="col-sm-8 blog-main">
+          <!-- echo the page contents -->
           <?= $pageContents ?>
         </div><!-- /.blog-main -->
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">

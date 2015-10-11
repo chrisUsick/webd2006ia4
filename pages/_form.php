@@ -1,3 +1,15 @@
+<!--
+the form partial
+
+expects the following variables declared in global scope
+$id (optional)
+$title
+$title
+$content
+$action: string                name of the submit button
+$isUpdate (optional) boolean   true if the form is being used for an update
+-->
+
 <form action="<?=$_SERVER['REQUEST_URI']?>" method="post" class="">
   <legend>
     <?= $legend?>

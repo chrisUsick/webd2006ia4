@@ -1,5 +1,15 @@
 <?php
+/**
+ * contains the CRUD methods for operating on posts
+ */
 require 'connect.php';
+
+/**
+ * insert a post into the database
+ * @param  String $title   title of post
+ * @param  String $content post content
+ * @return number          ID of the new post
+ */
 function insert ($title, $content)
 {
   $db = connect();
@@ -9,6 +19,13 @@ function insert ($title, $content)
   return $db->lastInsertId();
 }
 
+/**
+ * update a post
+ * @param  number $id      id of post
+ * @param  String $title   the new title
+ * @param  String $content the new content
+ * @return number          id of the updated post (always the same as input id)
+ */
 function update ($id, $title, $content)
 {
   $db = connect();
@@ -62,6 +79,11 @@ function find ($id)
   return null;
 }
 
+/**
+ * delete a post
+ * @param  int $id    post id
+ * @return void
+ */
 function delete ($id) {
   $db = connect();
   $sql = "DELETE FROM posts

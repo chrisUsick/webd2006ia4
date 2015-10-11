@@ -1,4 +1,9 @@
 <?php
+/**
+ * display the 5 most recent posts
+ *
+ * loads the posts, then renders a summary of each post
+ */
 require 'lib/crud.php';
 $posts = all(5);
 

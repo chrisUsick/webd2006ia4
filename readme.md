@@ -6,6 +6,11 @@ This is a one user PHP blog.
 - RESTful routing system (use query parameters for assignment requirements)
 - single user authentication  
 
+# important: installation
+This blog uses [composer](https://getcomposer.org/).
+
+Run `$ composer install`  
+
 # pages
 ## main pages
 ### home
