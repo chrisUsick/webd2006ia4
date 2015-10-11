@@ -9,10 +9,13 @@
   </div>
   <div class="form-group">
     <label for="content">Content</label>
-    <textarea required name="content" id="content" class="form-control"><?=$content?></textarea>
+    <textarea required name="content" id="content" class="form-control" rows="4"><?=$content?></textarea>
   </div>
   <button type="submit" class="btn btn-primary"><?=$action?></button>
   <?php if (isset($isUpdate) && $isUpdate): ?>
     <a class="btn btn-danger" href="/index.php/delete?postId=<?=$id?>">Delete</a>
   <?php endif; ?>
+  <a class="btn btn-default" href="/index.php/<?= (isset($isUpdate) && $isUpdate) ? "show?postId=$id" : "home" ?>">
+    Cancel
+  </a>
 </form>

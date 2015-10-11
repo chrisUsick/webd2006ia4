@@ -19,6 +19,7 @@ function pageExists($page)
   return (array_search($page, getAvailablePages())) ? true : false;
 }
 
+$title = "";
 $url_parts = explode("/",  $_SERVER['REQUEST_URI']);
 // requrest examples /index.php/home /home
 $pageName = '';
@@ -55,8 +56,8 @@ if ($pageName == '') {
     <meta name="description" content="WEBD-2006 Blog">
     <meta name="author" content="Christopher Usick">
     <!-- <link rel="icon" href="../../favicon.ico"> -->
-
-    <title>WEBD-2006 Blog</title>
+    <?php ob_start() ?>
+    <title>WEBD-2006 Blog %TITLE%</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -95,6 +96,19 @@ if ($pageName == '') {
       <div class="row">
         <div class="col-sm-8 blog-main">
           <?php include "pages/$page" ?>
+
+          <?php
+            $html = ob_get_contents();
+            $title = "";
+            if (function_exists('setTitle')){
+              $title = setTitle();
+              $html = str_replace("%TITLE%", "- $title", $html);
+            } else {
+              $html = str_replace("%TITLE%", "", $html);
+            }
+            ob_end_clean();
+            echo $html;
+          ?>
         </div><!-- /.blog-main -->
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
@@ -110,7 +124,7 @@ if ($pageName == '') {
           <div class="sidebar-module">
             <h4>Elsewhere</h4>
             <ol class="list-unstyled">
-              <li><a href="#">GitHub</a></li>
+              <li><a href="http://github.com/chrisUsick/webd2006ia4">GitHub</a></li>
             </ol>
           </div>
         </div><!-- /.blog-sidebar -->

@@ -1,18 +1,35 @@
 <?php
 require 'lib/crud.php';
 $posts = all(5);
+
+// implement the set title method
+function setTitle()
+{
+  return "Home page";
+}
 ?>
 <?php foreach ($posts as $post): ?>
   <div class="blog-post">
-    <h2 class="blog-post-title">
-      <a href="/index.php/show?postId=<?=$post['id']?>"><?=$post['title'] ?></a>
-    </h2>
-    <p class="blog-post-meta"><?= $post['date_created'] ?></p>
-    <?php foreach (preg_split('/(\n|\r\n)/', $post['content']) as $para): ?>
+    <div class="blog-post-title-wrapper">
+      <h2 class="blog-post-title">
+        <a href="/index.php/show?postId=<?=$post['id']?>"><?=$post['title'] ?></a>
+      </h2>
+      <a href="/index.php/edit?postId=<?=$post['id']?>">Edit</a>
+    </div>
+    <p class="blog-post-meta"><?= displayDate($post['date_created']) ?></p>
+    <?php foreach ($paras = preg_split('/(\n|\r\n)/', substr($post['content'], 0, 200)) as $para): ?>
       <p>
         <?=$para?>
+        <!-- show the read more link if last paragraph -->
+        <?php
+          $isLastPara = array_search($para, $paras);
+          if (strlen($post['content']) > 200 && $isLastPara):
+        ?>
+          ... <a href="/index.php/show?postId=<?=$post['id']?>">Read full post</a>
+        <?php endif; ?>
       </p>
     <?php endforeach; ?>
+
   </div>
 
 <?php endforeach; ?>

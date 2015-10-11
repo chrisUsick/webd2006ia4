@@ -1,4 +1,5 @@
 <?php
+require 'lib/authentication.php';
 require 'lib/crud.php';
 // variables for form mixin
 $id = null;
@@ -11,9 +12,17 @@ $idParam = filter_input(INPUT_GET, 'postId', FILTER_SANITIZE_NUMBER_INT);
 $post = null;
 if ($idParam) {
   $post = find($idParam);
-  $id = $post['id'];
-  $title = $post['title'];
-  $content = $post['content'];
+  if ($post != null) {
+    $id = $post['id'];
+    $title = $post['title'];
+    $content = $post['content'];
+    // implement the set title method
+    function setTitle()
+    {
+      global $post;
+      return "Edit: " . $post['title'];
+    }
+  }
 }
 // if is post check input
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

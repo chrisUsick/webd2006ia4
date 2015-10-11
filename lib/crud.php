@@ -54,7 +54,12 @@ function find ($id)
   $query = $db->prepare($sql);
   $query->bindParam('id', $id, PDO::PARAM_INT);
   $query->execute();
-  return $query->fetchAll(PDO::FETCH_ASSOC)[0];
+
+  $res = $query->fetchAll(PDO::FETCH_ASSOC);
+  if (count($res) >= 1) {
+    return $res[0];
+  }
+  return null;
 }
 
 function delete ($id) {
@@ -62,6 +67,18 @@ function delete ($id) {
   $sql = "DELETE FROM posts
           WHERE id = :id";
   $query = $db->prepare($sql);
+  $query->bindParam('id', $id, PDO::PARAM_INT);
   $query->execute();
+}
+
+// helpers
+/**
+ * display a date
+ * @param  String  $date a date string in a valid `strtotime` format
+ * @return String        a formatted date
+ */
+function displayDate($date)
+{
+  return date("F d, Y, g:i a",strtotime($date));
 }
 ?>

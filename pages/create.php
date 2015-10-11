@@ -1,8 +1,14 @@
 <?php
+require 'lib/authentication.php';
 $title = "";
 $content = "";
 $legend = "Create blog post";
 $action ="Create";
+// implement the set title method
+function setTitle()
+{
+  return "Create post";
+}
 // if is post check input
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   require 'lib/crud.php';
