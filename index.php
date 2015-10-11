@@ -51,6 +51,20 @@ if ($pageName == '') {
   // exit;
 }
 
+// read the page into the buffer
+ob_start();
+include "pages/$page";
+$pageContents = ob_get_contents();
+// close the buffer
+ob_end_clean();
+
+// now the setTitle method is in scope
+$pageTitle = "";
+if (function_exists('setTitle')){
+  $pageTitle = setTitle();
+} else {
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +77,7 @@ if ($pageName == '') {
     <meta name="author" content="Christopher Usick">
     <!-- <link rel="icon" href="../../favicon.ico"> -->
     <?php ob_start() ?>
-    <title>WEBD-2006 Blog %TITLE%</title>
+    <title>WEBD-2006 Blog <?= ($pageTitle) ? "- $pageTitle" : "" ?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -101,20 +115,7 @@ if ($pageName == '') {
       </div>
       <div class="row">
         <div class="col-sm-8 blog-main">
-          <?php include "pages/$page" ?>
-
-          <?php
-            $html = ob_get_contents();
-            $title = "";
-            if (function_exists('setTitle')){
-              $title = setTitle();
-              $html = str_replace("%TITLE%", "- $title", $html);
-            } else {
-              $html = str_replace("%TITLE%", "", $html);
-            }
-            ob_end_clean();
-            echo $html;
-          ?>
+          <?= $pageContents ?>
         </div><!-- /.blog-main -->
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">

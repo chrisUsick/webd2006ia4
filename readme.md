@@ -1,5 +1,11 @@
 This is a one user PHP blog.
 
+# features
+- responsive design
+- full CRUD operations
+- RESTful routing system (use query parameters for assignment requirements)
+- single user authentication  
+
 # pages
 ## main pages
 ### home
