@@ -1,4 +1,4 @@
-This is a one user PHP blog
+This is a one user PHP blog.
 
 # pages
 ## main pages

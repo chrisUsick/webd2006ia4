@@ -1,5 +1,11 @@
 <?php
-// handle routing logic
+/**
+ * main entry point for site
+ *
+ * This page contains the routing logic to load the correct page.
+ * If the URL part after `/index.php`, or the first URL part if `/index.php`,
+ * corresponds to a page in the `/pages` directory, it will load that page.
+ */
 /**
  * get list of pages that can be displayed
  * @return Array  array of files and directories that can be displayed
