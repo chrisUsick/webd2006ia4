@@ -13,6 +13,7 @@ function setTitle()
   return "Home page";
 }
 ?>
+<h2>Recent blog posts</h2>
 <?php foreach ($posts as $post): ?>
   <div class="blog-post">
     <div class="blog-post-title-wrapper">
@@ -27,7 +28,7 @@ function setTitle()
         <?=$para?>
         <!-- show the read more link if last paragraph -->
         <?php
-          $isLastPara = array_search($para, $paras);
+          $isLastPara = array_search($para, $paras) == count($paras) - 1;
           if (strlen($post['content']) > 200 && $isLastPara):
         ?>
           ... <a href="/index.php/show?postId=<?=$post['id']?>">Read full post</a>

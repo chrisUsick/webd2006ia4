@@ -15,6 +15,13 @@ $isUpdate (optional) boolean   true if the form is being used for an update
     <?= $legend?>
   </legend>
   <input type="hidden" name="id" value="<?=isset($id) ? $id : ''?>" id="id">
+  <?php if (isset($errorMessage)): ?>
+    <div class="form-group">
+      <p class="alert alert-danger">
+        <?=$errorMessage?>
+      </p>
+    </div>
+  <?php endif; ?>
   <div class="form-group">
     <label for="title">Title</label>
     <input required type="text" name="title" class="form-control" id="title" value="<?=$title?>">

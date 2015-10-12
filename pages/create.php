@@ -23,8 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
   // insert
-  $postId = insert($title, $content);
-  header("Location: /index.php/show?postId=$postId");
+  if (strlen($title) >= 1 && strlen($content) >= 1) {
+    $postId = insert($title, $content);
+    header("Location: /index.php/show?postId=$postId");
+  } else {
+    $errorMessage = "title and content are required.";
+  }
 }
 ?>
 
