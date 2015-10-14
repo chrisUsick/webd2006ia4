@@ -1,4 +1,9 @@
 <?php
+/**
+ * Get a database connection
+ *
+ * This file provides the connect() method to all connecting to the database 
+ */
 define('DB_DSN','mysql:host=localhost;port=3306;dbname=serverside;');
 define('DB_USER','serveruser');
 define('DB_PASS','gorgonzola7!');

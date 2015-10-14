@@ -1,4 +1,4 @@
-This is a one user PHP blog.
+This is a one user PHP blog. See a live version [here](http://blog.ninefinecode.com).
 
 # features
 - responsive design
@@ -28,8 +28,8 @@ contain the layout that will be in all pages
 
 ```sql
 create table posts
-  (id int primary key not null auto increment,
+  (id int primary key not null auto_increment,
   title varchar(100) not null,
-  content text not null
+  content text not null,
   date_created timestamp not null default CURRENT_TIMESTAMP)
 ```

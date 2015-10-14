@@ -107,6 +107,13 @@ h6, .h6 {
   line-height: 1.5;
 }
 
+/*
+ * forms
+ */
+.delete-form {
+  margin-top: 10px;
+}
+
 /* Sidebar modules for boxing content */
 .sidebar-module {
   padding: 15px;

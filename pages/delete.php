@@ -4,18 +4,23 @@
  *
  * validates the postId query Param then deletes it. redirects to home
  */
-require 'lib/authentication.php';
-require 'lib/crud.php';
-$id = filter_input(INPUT_GET, 'postId', FILTER_SANITIZE_NUMBER_INT);
-$msg = "";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  require 'lib/authentication.php';
+  require 'lib/crud.php';
+  $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+  $msg = "";
 
-// id is found
-if ($id) {
-  delete($id);
-  $msg = "successfully deleted post with $id.";
-  header("Location: /index.php/home");
+  // id is found
+  if ($id) {
+    delete($id);
+    $msg = "successfully deleted post with $id.";
+    header("Location: /index.php/home");
+  } else {
+    $msg = "invalid ID";
+  }
 } else {
-  $msg = "invalid ID";
+  // silently redirect to home
+  header("Location: /index.php/home");
 }
 ?>
 

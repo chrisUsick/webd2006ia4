@@ -1,4 +1,9 @@
 <?php
+/**
+ * Simple HTTP authentication
+ * @author Kyle Geske <kgeske@rrc.ca>
+ *
+ */
 define('ADMIN_LOGIN','wally');
 define('ADMIN_PASSWORD','mypass');
 if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])
